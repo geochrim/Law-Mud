@@ -45,14 +45,19 @@ that this file is in and then into a sub-directory named "lib" and require a
 file called "foobar.rb".
 
 This is the file the code is in
+
 ```ruby
 __FILE__
 ```
+
 This is the directory that this ruby file is in
+
 ```ruby
 File.dirname(__FILE__)
 ```
+
 This is the sub-folder lib below the directory that holds the file that the ruby code is in
+
 ```ruby
 File.dirname(__FILE__) + "/lib"
 ```
