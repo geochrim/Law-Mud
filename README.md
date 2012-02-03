@@ -12,65 +12,65 @@ Second.  Organizing your files.  Normally people store their classes in one per 
 
 The naive way to do it would be to make "item.rb" and "monster.rb" and put them in the same folder.  Then you could 
  
-  require "./monster"
-  require "./item"
+    require "./monster"
+    require "./item"
 
 at the top of the file.  The "./" means "in this folder".  The problem lies if you run the program from a different folder, then "./" is no longer the correct folder.  So here's the trick.  In ruby there is a special constant __FILE__ which is the file the current code is in.  So... using this you can then find files relative to this file.  So lets say that I want to go from the folder that this file is in and then into a sub-directory named "lib" and require a file called "foobar.rb".
 
-  __FILE__ # this is the file the code is in
-  File.dirname(__FILE__)  # this is the directory that this ruby file is in
-  File.dirname(__FILE__) + "/lib" # this is the sub-folder lib below the directory that holds the file that the ruby code is in
+    __FILE__ # this is the file the code is in
+    File.dirname(__FILE__)  # this is the directory that this ruby file is in
+    File.dirname(__FILE__) + "/lib" # this is the sub-folder lib below the directory that holds the file that the ruby code is in
 
-So... In this case I could
+  So... In this case I could
 
-  require File.dirname(__FILE__) + "/lib/monster"
-  require File.dirname(__FILE__) + "/lib/item"
+    require File.dirname(__FILE__) + "/lib/monster"
+    require File.dirname(__FILE__) + "/lib/item"
 
-Of course another option would be to add that folder to the load path.  In "irb" type $LOAD_PATH and you'll see its an array of directories that Ruby looks for things to require.  An idiomatic way to do this would be.
+  Of course another option would be to add that folder to the load path.  In "irb" type $LOAD_PATH and you'll see its an array of directories that Ruby looks for things to require.  An idiomatic way to do this would be.
 
-  $LOAD_PATH.unshift File.dirname(__FILE__) + "/lib/"
-  require "monster"
-  require "item"
+    $LOAD_PATH.unshift File.dirname(__FILE__) + "/lib/"
+    require "monster"
+    require "item"
 
-Also you will probably make a class that handles the basic game server.  You often end up with a VERY short file which requires everything and starts things and then all the code is organized into small single purpose files.  
+  Also you will probably make a class that handles the basic game server.  You often end up with a VERY short file which requires everything and starts things and then all the code is organized into small single purpose files.  
 
-  #!/usr/bin/env ruby
+    #!/usr/bin/env ruby
 
-  $LOAD_PATH.unshift File.dirname(__FILE__) + "/lib/"
+    $LOAD_PATH.unshift File.dirname(__FILE__) + "/lib/"
 
-  require "monster"
-  require "item"
-  require "lawmud"
+    require "monster"
+    require "item"
+    require "lawmud"
 
-  LawMud.start
+    LawMud.start
 
-And that's what the entire "law_mud" executable would look like - assuming it had all the other files organized in sub folders.  I forgot the mention the "#!" or "Hash Bang" at the top is a unix trick to turn a program file into an executable.  Once you do that and "chmod +x" the file you can execute it like any other unix program without having explicitly evoke "ruby".
+  And that's what the entire "law_mud" executable would look like - assuming it had all the other files organized in sub folders.  I forgot the mention the "#!" or "Hash Bang" at the top is a unix trick to turn a program file into an executable.  Once you do that and "chmod +x" the file you can execute it like any other unix program without having explicitly evoke "ruby".
 
-Anyhow - all that is just to help you organize in an idiomatic way and only becomes important as the code base gets bigger and bigger and harder to manage.
+  Anyhow - all that is just to help you organize in an idiomatic way and only becomes important as the code base gets bigger and bigger and harder to manage.
 
-[geoff's note: one thing I will mention, from a purely ignunt nub perspective, is that once you load the classes in their separate files, you have to make sure that you include the initializations and instances of those class objects in the master file, NOT the file that determines the classes; otherwise, the instances will be locked up locally in their class definition files instead of available for runtime]
+  [geoff's note: one thing I will mention, from a purely ignunt nub perspective, is that once you load the classes in their separate files, you have to make sure that you include the initializations and instances of those class objects in the master file, NOT the file that determines the classes; otherwise, the instances will be locked up locally in their class definition files instead of available for runtime]
 
 Next lets look at this
 
-  monsterarray << growler = Monster.new("Growler", 0, 1, 3, "a booger", "a green fish")
+    monsterarray << growler = Monster.new("Growler", 0, 1, 3, "a booger", "a green fish")
 
 First... clever use of << and = ... I approve. =)
 
 Next is when looking at that "new" I see a bunch of numbers and terms and its not obvious what I'm looking at.  Imagine what it will look like when you add mana and vitality, and strength, and position and age and... - its going to get harry...  here's what I recommend.  Peel out most or all of those params and make them an "options array".  This is another idiomatic way to handle function calls with lots of options.  Check this out
 
-  class Monster
-    attr_accessor :name, :x, :y, :health, :inventory
+    class Monster
+      attr_accessor :name, :x, :y, :health, :inventory
 
-    def initialize(name, options = {})
-      @name  = name
-      @x = options[:x] || 0
-      @y = options[:y] || 0
-      @health = options[:health] || 100
-      @inventory = options[:inventory] || []
+      def initialize(name, options = {})
+        @name  = name
+        @x = options[:x] || 0
+        @y = options[:y] || 0
+        @health = options[:health] || 100
+        @inventory = options[:inventory] || []
+      end
     end
-  end
 
-  monsterarray << growler = Monster.new("Growler", :x => 2, :y => 1, :inventory => [ "a booger", "a green fish"])
+    monsterarray << growler = Monster.new("Growler", :x => 2, :y => 1, :inventory => [ "a booger", "a green fish"])
 
 So now when you read the Monster.new you know exactly what all those numbers are... you know that 2 is the x coord and 1 is the y coord and you don't have to check the initialize to know what is what.  You can also not bother passing an option and have it default.  I didn't bother with health but the monster's health will default to 100 because that's the default.  If I add a "mana" option later I don't have to go back and add mana to monsters who don't have any.  Much much more flexible.  If you want to make a monster at location 0,0 with 100 health and no inventory you can just do a "Monster.new("Growler")" with no other options...
 
@@ -98,49 +98,49 @@ Next up is you could manage that giant list of monsters automatically.  Consider
         end
     end
 
-  Growler = Monster.new("Growler", :x => 2, :y => 1, :inventory => [ "a booger", "a green fish"])
+    Growler = Monster.new("Growler", :x => 2, :y => 1, :inventory => [ "a booger", "a green fish"])
 
 See what I did there at the end of initialize?  Now the monsters list is self-managing...  "self" references the current object.
 
 Ok so -- the attack function ... if you want to loop forever - you can do a "while true" instead of "while 2 == 2" - same thing basically but other coders will know what you mean with while true.  But really - you don't want to loop forever... you want to loop until one of the two are dead.  So here's an idea.  Give monster and player a function called "alive?" and returns true if health > 0 or maybe a "dead?".
 
-  class Monster
-      def alive?
-        health > 0
-      end
+    class Monster
+        def alive?
+          health > 0
+        end
 
-      def dead?
-        not alive?
-      end
-  end
+        def dead?
+          not alive?
+        end
+    end
 
-  def attach(player, monster)
-     while player.alive? and monster.alive?
-        ...
-     end
-  end
+    def attach(player, monster)
+       while player.alive? and monster.alive?
+          ...
+       end
+    end
 
-# or #
+    # or #
 
-  def attach(player, monster)
-     until.player.dead? or monster.dead?
-       ....
-     end
-  end
+    def attach(player, monster)
+       until.player.dead? or monster.dead?
+         ....
+       end
+    end
 
 Some things to meditate on...
 
-  Rooms = []
+    Rooms = []
 
-  Rooms << Room.new "The Classroom", ...
+    Rooms << Room.new "The Classroom", ...
 
-  class Player
-    def room
-      Rooms.detect { |r| room.location == location }
+    class Player
+      def room
+        Rooms.detect { |r| room.location == location }
+      end
     end
-  end
 
-## suddenly roominventory is easy... its just player.room.inventory
+    ## suddenly roominventory is easy... its just player.room.inventory
 
 A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.  Enjoy. =)
 
