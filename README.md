@@ -82,7 +82,7 @@ any other unix program without having explicitly evoke "ruby".
 Anyhow - all that is just to help you organize in an idiomatic way and only
 becomes important as the code base gets bigger and bigger and harder to manage.
 
-    ** geoff's note ** one thing I will mention, from a purely ignunt nub perspective,
+    *geoff's note* one thing I will mention, from a purely ignunt nub perspective,
     is that once you load the classes in their separate files, you have to make
     sure that you include the initializations and instances of those class objects
     in the master file, NOT the file that determines the classes; otherwise, the
