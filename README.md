@@ -1,6 +1,6 @@
+## Law Mud
+
 Last November, O was gracious enough to share some of his refined wisdom with me regarding 1. idiomatic coding syntax; 2. separating a mega file into separate files, and 3. "meta" programming.   I have been late in posting this to github and Tugboat, per his suggestion, my apologies, but here they are, somewhat modified from gmail formatting, etc É  Thanks again, O, and this is good stuff, yo.  Check it out.
-
-
 
 *************
 
@@ -76,27 +76,27 @@ So now when you read the Monster.new you know exactly what all those numbers are
 
 If you want to make Big Important variables that can be "seen" from inside of lots of functions... like monsterarray I would recommend making them constants.  monsterarray is a perfect candidate. Actually so would growler...
 
-  Monsters = []
-  Monsters << Growler = Monster.new("Grower", ..)
+    Monsters = []
+    Monsters << Growler = Monster.new("Grower", ..)
 
 Now you can "see" Monsters and Growler from inside other functions.  This can come in handy.  You want to do as few of these as possible since they clutter the scope but a few are ok for top-down organization of things.  I'll show you how to cut down on them in a latter email since I don't want to smoke your brain all at once.
 
 Next up is you could manage that giant list of monsters automatically.  Consider this...
 
-  Monsters = []
+    Monsters = []
 
-  class Monster
-      attr_accessor :name, :x, :y, :health, :inventory
+    class Monster
+        attr_accessor :name, :x, :y, :health, :inventory
 
-      def initialize(name, options = {})
-        @name      = name
-        @x         = options[:x] || 0
-        @y         = options[:y] || 0
-        @health    = options[:health] || 100
-        @inventory = options[:inventory] || []
-        Monsters << self
-      end
-  end
+        def initialize(name, options = {})
+          @name      = name
+          @x         = options[:x] || 0
+          @y         = options[:y] || 0
+          @health    = options[:health] || 100
+          @inventory = options[:inventory] || []
+          Monsters << self
+        end
+    end
 
   Growler = Monster.new("Growler", :x => 2, :y => 1, :inventory => [ "a booger", "a green fish"])
 
