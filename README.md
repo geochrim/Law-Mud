@@ -159,7 +159,7 @@ Ok so -- the attack function ... if you want to loop forever - you can do a "whi
        end
     end
 
-    # or #
+or
 
     def attach(player, monster)
        until.player.dead? or monster.dead?
@@ -216,7 +216,7 @@ Ok - this is kind of the opposite of method_missing.  Method_missing lets us say
 
     player.shout "hello", :volume => :loud
 
-    ## and
+and
 
     player.__send__ :shout, "hello", :volume => :loud 
 
@@ -265,31 +265,31 @@ This is the practice of opening up an existing class and adding methods to it.  
 
 My favorite example is what Rails (activesupport) does to the Fixnum class.  Fixnum is the class that basic numbers like 5 or 200 have.  It's something like this.
 
-  class Fixnum
-    def seconds
-      self
-    end
+    class Fixnum
+      def seconds
+        self
+      end
 
-    def minutes
-      self * 60
-    end
+      def minutes
+        self * 60
+      end
 
-    def hours
-      self * 60 * 60
-    end
+      def hours
+        self * 60 * 60
+      end
 
-    def days
-      self * 60 * 60 * 24
-    end
+      def days
+        self * 60 * 60 * 24
+      end
 
-    def ago
-      Time.now - self
-    end
+      def ago
+        Time.now - self
+      end
 
-    def from_now
-      Time.now + self
+      def from_now
+        Time.now + self
+      end
     end
-  end
 
 This allows you to write code that looks like this
 
