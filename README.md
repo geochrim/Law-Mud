@@ -335,6 +335,7 @@ My favorite example is what Rails (activesupport) does to the Fixnum class.
 Fixnum is the class that basic numbers like 5 or 200 have.  It's something like
 this.
 
+```ruby
     class Fixnum
       def seconds
         self
@@ -360,12 +361,15 @@ this.
         Time.now + self
       end
     end
+```
 
 This allows you to write code that looks like this
 
-    duration = 5.hours
-    start = 2.days.ago
-    end = 50.minutes.from_now
+```ruby
+duration = 5.hours
+start = 2.days.ago
+end = 50.minutes.from_now
+```
 
 So evil.  Yet so beautiful.
 
