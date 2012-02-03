@@ -243,9 +243,10 @@ end
 
 suddenly roominventory is easy... its just player.room.inventory
 
-A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.  Enjoy. =)
+A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.
+Enjoy. =)
 
-"So what is this 'meta' programming business?
+"So what is this 'meta programming' business?
 ---------------------------------------------
 
 > [ *Geoff* ] it doesn't seem to be a language, in an all-or-nothing sense ("CODE META OR GO
