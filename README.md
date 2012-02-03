@@ -73,7 +73,7 @@ and then all the code is organized into small single purpose files.
 
     LawMud.start
 
-And that's what the entire "lawmud" executable would look like - assuming it
+And that's what the entire "law_mud" executable would look like - assuming it
 had all the other files organized in sub folders.  I forgot the mention the
 "#!" or "Hash Bang" at the top is a unix trick to turn a program file into an
 executable.  Once you do that and "chmod +x" the file you can execute it like
@@ -82,12 +82,12 @@ any other unix program without having explicitly evoke "ruby".
 Anyhow - all that is just to help you organize in an idiomatic way and only
 becomes important as the code base gets bigger and bigger and harder to manage.
 
-    *geoff's note* one thing I will mention, from a purely ignunt nub perspective,
-    is that once you load the classes in their separate files, you have to make
-    sure that you include the initializations and instances of those class objects
-    in the master file, NOT the file that determines the classes; otherwise, the
-    instances will be locked up locally in their class definition files instead of
-    available for runtime
+> *Geoff* one thing I will mention, from a purely ignunt nub perspective,
+> is that once you load the classes in their separate files, you have to make
+> sure that you include the initializations and instances of those class objects
+> in the master file, NOT the file that determines the classes; otherwise, the
+> instances will be locked up locally in their class definition files instead of
+> available for runtime
 
 Next lets look at this
 
@@ -216,7 +216,7 @@ Ok - this is kind of the opposite of method_missing.  Method_missing lets us say
 
     player.shout "hello", :volume => :loud
 
-## and
+    ## and
 
     player.__send__ :shout, "hello", :volume => :loud 
 
