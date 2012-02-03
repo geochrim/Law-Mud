@@ -38,7 +38,7 @@ require "./item"
 
 at the top of the file.  The "./" means "in this folder".  The problem lies if
 you run the program from a different folder, then "./" is no longer the correct
-folder.  So here's the trick.  In ruby there is a special constant __FILE__
+folder.  So here's the trick.  In ruby there is a special constant \_\_FILE\_\_
 which is the file the current code is in.  So... using this you can then find
 files relative to this file.  So lets say that I want to go from the folder
 that this file is in and then into a sub-directory named "lib" and require a
