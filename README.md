@@ -87,7 +87,7 @@ any other unix program without having explicitly evoke "ruby".
 Anyhow - all that is just to help you organize in an idiomatic way and only
 becomes important as the code base gets bigger and bigger and harder to manage.
 
-> *Geoff* one thing I will mention, from a purely ignunt nub perspective,
+> [ *Geoff* ] one thing I will mention, from a purely ignunt nub perspective,
 > is that once you load the classes in their separate files, you have to make
 > sure that you include the initializations and instances of those class objects
 > in the master file, NOT the file that determines the classes; otherwise, the
@@ -217,7 +217,7 @@ A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.  
 "So what is this 'meta' programming business?
 ---------------------------------------------
 
-> it doesn't seem to be a language, in an all-or-nothing sense ("CODE META OR GO
+> [ *Geoff* ] it doesn't seem to be a language, in an all-or-nothing sense ("CODE META OR GO
 > HOME!"); it seems to be more a collection of techniques that help compress code
 > and designs, which would make maintaining it that much easier, since there's
 > less of it to review.  and might enhance speed.  slightly.
@@ -231,7 +231,7 @@ A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.  
 
 ### O responded: 
 
-"I wouldn't stress too much about it.  Learn ruby.  Some of the code will be
+I wouldn't stress too much about it.  Learn ruby.  Some of the code will be
 meta.  Some will not. Truth be told - there's not a lot of call to
 meta-programming in newbie level stuff.  I'll look for opportunities in LawMud
 just so you can play with it or cut your teeth on it.
