@@ -95,7 +95,7 @@ require "lawmud"
 LawMud.start
 ```
 
-And that's what the entire "law_mud" executable would look like - assuming it
+And that's what the entire "law\_mud" executable would look like - assuming it
 had all the other files organized in sub folders.  I forgot the mention the
 "#!" or "Hash Bang" at the top is a unix trick to turn a program file into an
 executable.  Once you do that and "chmod +x" the file you can execute it like
@@ -117,7 +117,7 @@ Next lets look at this
 monsterarray << growler = Monster.new("Growler", 0, 1, 3, "a booger", "a green fish")
 ```
 
-First... clever use of << and = ... I approve. =)
+First... clever use of \<\< and = ... I approve. =)
 
 Next is when looking at that "new" I see a bunch of numbers and terms and its
 not obvious what I'm looking at.  Imagine what it will look like when you add
@@ -290,11 +290,11 @@ with arguments ["bar","baz"]'
 This allows you to make an object behave as if it has methods on it you never
 defined.  All kinds of fun there.
 
-### The magical '__send__':
+### The magical '\_\_send\_\_':
 
-Ok - this is kind of the opposite of method_missing.  Method_missing lets us
+Ok - this is kind of the opposite of method\_missing.  method\_missing lets us
 say "if someone calls a method give it to me as a symbol and an array of
-arguments.  __send__ says... "if I have a symbol named matching a method name
+arguments.  \_\_send\_\_ says... "if I have a symbol named matching a method name
 and some arguments I want to call that method.  Or basically
 
 ```ruby
@@ -330,7 +330,7 @@ end
 ```
 
 Now big brother has no methods except for initialize which gives it a victim to
-watch and a method_missing which puts out whats being called and then send's
+watch and a method\_missing which puts out whats being called and then send's
 the exact same method and args on to the victim.  So if I call "foobar" on
 BigBrother it will in turn called "foobar" on @victim.  So now somewhere in my
 code I have a 
@@ -348,7 +348,7 @@ Mufferies = BigBrother.new(Player.new("Mufferies"))
 And everything will behave as before but now I will get a message whenever a
 method is called of Mufferies.
 
-### The magical 'respond_to?'
+### The magical 'respond\_to?'
 
 This lets you check an object and determine if it has a method declared by some name.
 
@@ -418,7 +418,7 @@ end = 50.minutes.from_now
 
 So evil.  Yet so beautiful.
 
-There are others but I'll stop here.  instance_eval, class_eval.  All kinds.  Have fun =)
+There are others but I'll stop here.  instance\_eval, class\_eval.  All kinds.  Have fun =)
 
 Note: I'm doing all of this with Ruby 1.9.2.  Some of these things are slighly different in 1.8.7.
 
