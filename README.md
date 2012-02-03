@@ -217,19 +217,19 @@ A ton more cool ideas but I'll stop now b/c I'm sure your brain is quite full.  
 "So what is this 'meta' programming business?
 ---------------------------------------------
 
-it doesn't seem to be a language, in an all-or-nothing sense ("CODE META OR GO
-HOME!"); it seems to be more a collection of techniques that help compress code
-and designs, which would make maintaining it that much easier, since there's
-less of it to review.  and might enhance speed.  slightly.
+> it doesn't seem to be a language, in an all-or-nothing sense ("CODE META OR GO
+> HOME!"); it seems to be more a collection of techniques that help compress code
+> and designs, which would make maintaining it that much easier, since there's
+> less of it to review.  and might enhance speed.  slightly.
 
-but as far as the overall desirability of learning metaprogramming, as in the
-get-a-book, get doctrinal, get religion, etc ... ... i mean, i'm game, i'm
-down, i LOVE ME THE CODING ... (what little I know), and I'm all about trying
-to get better ... but out of curiosity ... is learning meta the necessary,
-required, doctrinal "next step," or is it more a question of
-picking-and-choosing techniques which serve you as you need them ... ?"
+> but as far as the overall desirability of learning metaprogramming, as in the
+> get-a-book, get doctrinal, get religion, etc ... ... i mean, i'm game, i'm
+> down, i LOVE ME THE CODING ... (what little I know), and I'm all about trying
+> to get better ... but out of curiosity ... is learning meta the necessary,
+> required, doctrinal "next step," or is it more a question of
+> picking-and-choosing techniques which serve you as you need them ... ?"
 
-O responded: 
+### O responded: 
 
 "I wouldn't stress too much about it.  Learn ruby.  Some of the code will be
 meta.  Some will not. Truth be told - there's not a lot of call to
@@ -257,7 +257,7 @@ with arguments ["bar","baz"]'
 This allows you to make an object behave as if it has methods on it you never
 defined.  All kinds of fun there.
 
-The magical '__send__':
+### The magical '__send__':
 
 Ok - this is kind of the opposite of method_missing.  Method_missing lets us
 say "if someone calls a method give it to me as a symbol and an array of
@@ -305,7 +305,7 @@ Now I just replace it with
 And everything will behave as before but now I will get a message whenever a
 method is called of Mufferies.
 
-The magical 'respond_to?'
+### The magical 'respond_to?'
 
 This lets you check an object and determine if it has a method declared by some name.
 
